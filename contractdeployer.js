@@ -37,7 +37,7 @@ async function deployAtRandomIntervals() {
         await deployContract();
 
         // Generate a random delay between 60 and 90 seconds
-        const randomDelay = Math.floor(Math.random() * 31) + 60; // Random value between 60 and 90
+        const randomDelay = Math.floor(Math.random() * 31) + 3600; // Random value between 60 and 90
         console.log(`Next deployment in ${randomDelay} seconds...`);
         await new Promise((resolve) => setTimeout(resolve, randomDelay * 1000));
     }
