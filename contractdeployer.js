@@ -18,14 +18,14 @@ async function deployContract() {
         // Create a Contract Factory
         const factory = new ethers.ContractFactory(CONTRACT_ABI, CONTRACT_BYTECODE, wallet);
 
-        // Deploy the Contract
-        const contract = await factory.deploy();
-        console.log(`Contract deployed at: ${contract.target}`);
-        console.log("Waiting for confirmation...");
+    // Deploy the Contract with gas limit
+    const contract = await factory.deploy({ gasLimit: 100000 });
+    console.log(`Contract deployed at: ${contract.target}`);
+    console.log("Waiting for confirmation...");
 
-        // Wait for the transaction to be mined
-        await contract.deploymentTransaction().wait();
-        console.log(`Contract confirmed at: ${contract.target}`);
+    // Wait for the transaction to be mined
+    await contract.deploymentTransaction().wait();
+    console.log(`Contract confirmed at: ${contract.target}`);
     } catch (err) {
         console.error("Error deploying contract:", err);
     }
